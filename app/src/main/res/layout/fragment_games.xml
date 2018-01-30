@@ -13,14 +13,14 @@
         android:orientation="vertical">
 
         <ExpandableListView
+            android:id="@+id/eL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingEnd="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingStart="10dp" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Games Fragment" />
 
 
 </FrameLayout>

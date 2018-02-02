@@ -12,14 +12,6 @@
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Help" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Test" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Test" />
     </group>
 
     <item android:title="Other">

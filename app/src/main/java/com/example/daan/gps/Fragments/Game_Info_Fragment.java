@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.daan.gps.Activities.MapsActivity;
 import com.example.daan.gps.R;
@@ -17,7 +16,6 @@ import com.example.daan.gps.R;
  * A simple {@link Fragment} subclass.
  */
 public class Game_Info_Fragment extends Fragment {
-
 
     public Game_Info_Fragment() {
         // Required empty public constructor
@@ -32,7 +30,7 @@ public class Game_Info_Fragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         view.findViewById(R.id.play_btn).setOnClickListener(new View.OnClickListener() {

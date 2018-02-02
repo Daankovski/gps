@@ -82,9 +82,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -110,11 +108,10 @@ public class MainActivity extends AppCompatActivity
 
         if(currentFragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            fragmentTransaction.replace(R.id.fragment_container, currentFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, currentFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

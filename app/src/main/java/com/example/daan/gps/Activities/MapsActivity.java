@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.example.daan.gps.R;
@@ -25,14 +28,27 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.DialogOnAnyDeniedMultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+/*
+    TODO:
+
+
+
+ */
+
+
+
+
+
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +56,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        toolbar = (Toolbar) findViewById(R.id.mapToolbar);
+       // setSupportActionBar(toolbar);
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -67,6 +87,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(up, 14f));
 
         initializeMapUI();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Dexter.MultiPermissionListener
 
     }
 
@@ -179,7 +207,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMyLocationEnabled(true);
 
         // Enables zoom buttons
-        mMap.getUiSettings().setZoomControlsEnabled(false); // True == enabled
+        mMap.getUiSettings().setZoomControlsEnabled(true); // True == enabled
 
         // Enables zoom gestures
         mMap.getUiSettings().setZoomGesturesEnabled(true);
@@ -196,9 +224,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 }
 
 
-/*
-    TODO:
 
-    - Zorgen dat er een pop up komt die de user vraagt of ze zeker zijn deze app te willen sluiten om accidental backpresses te voorkomen
-
- */

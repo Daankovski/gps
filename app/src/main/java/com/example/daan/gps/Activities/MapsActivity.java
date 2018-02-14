@@ -37,6 +37,9 @@ import java.util.List;
 /*
     TODO:
 
+    - Custom UI
+    - Koppelen aan back-end
+    -
 
 
  */
@@ -48,7 +51,6 @@ import java.util.List;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +58,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-        toolbar = (Toolbar) findViewById(R.id.mapToolbar);
-       // setSupportActionBar(toolbar);
-
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -94,7 +92,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onResume() {
         super.onResume();
 
-        Dexter.MultiPermissionListener
 
     }
 

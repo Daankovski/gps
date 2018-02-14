@@ -19,6 +19,7 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
+import com.example.daan.gps.Classes.AppCompatPreferenceActivity;
 import com.example.daan.gps.R;
 
 import java.util.List;

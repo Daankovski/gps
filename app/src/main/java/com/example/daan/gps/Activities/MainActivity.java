@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-        //checkConnection();
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -52,6 +50,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        /*
+        * The code below loads the Game_Fragment
+        * when the app starts.
+        */
 
         if (findViewById(R.id.fragment_container) != null){
             if (savedInstanceState != null){
@@ -66,7 +69,9 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.fragment_container, currentFragment).commit();
         }
 
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorlayout);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorlayout); // This line is just for the showSnack() function
+
+        checkConnection(); // This function checks if the device has an active internet connection.
     }
 
     @Override
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity
         /*register connection status listener*/
         MyApplication.getInstance().setConnectivityListener(this);
 
+        checkConnection();
     }
 
 
@@ -158,28 +164,39 @@ public class MainActivity extends AppCompatActivity
         showSnack(isConnected);
     }
 
+
+    // Shows a snackbar whenever there is a change in the connection.
     private void showSnack(boolean isConnected){
         String message;
         int color;
         if (isConnected) {
             message = "Connected to internet!";
             color = Color.WHITE;
+
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+            View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(color);
+            snackbar.show();
         } else {
             message = "No internet connection!";
             color = Color.RED;
+
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayout, message, Snackbar.LENGTH_LONG)
+                    .setAction("SETTINGS", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                        }
+                    });
+            View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(color);
+            snackbar.show();
         }
 
-        Snackbar snackbar = Snackbar
-                .make(coordinatorLayout, message, Snackbar.LENGTH_LONG)
-                .setAction("SETTINGS", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
-                    }
-                });
-        View sbView = snackbar.getView();
-        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(color);
-        snackbar.show();
+
     }
 }

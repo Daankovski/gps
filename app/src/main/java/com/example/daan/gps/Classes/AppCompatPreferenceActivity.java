@@ -1,4 +1,4 @@
-package com.example.daan.gps.Activities;
+package com.example.daan.gps.Classes;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
